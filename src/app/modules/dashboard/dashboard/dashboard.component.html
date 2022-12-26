@@ -1,0 +1,44 @@
+<section id="dashboard" class="row">
+  <div class="col-xl-6 col-md-12">
+      <app-box-comparativo [title]="'Clientes'" [comparado]="clientes$ | async"></app-box-comparativo>
+  </div>
+  <div class="col-xl-6 col-md-12">
+    <app-box-comparativo [title]="'Vendas'" [comparado]="pedidos$ | async"></app-box-comparativo>
+  </div>
+  <div class="col-xl-8 col-md-12">
+    <div id="ultimos-pedidos" class="box-dash">
+      <h2>Pedidos recentes</h2>
+      <span class="box-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Cliente</th>
+              <th>Produtos</th>
+              <th>Valot Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let pedido of pedidos$ | async; let i=index">
+              <ng-container *ngIf="i < 6">
+                <td>{{pedido.cliente}}</td>
+                <td>
+                  <ng-container *ngFor="let produto of pedido.produto"><span>{{produto}}</span></ng-container>
+                </td>
+                <td>{{pedido.valor | currency:'R$: ':'symbol'}}</td>
+              </ng-container>
+            </tr>
+          </tbody>
+        </table>
+      </span>
+      <a routerLink="/pedidos">Veja todos os pedidos de vendas</a>
+    </div>
+  </div>
+  <div class="col-xl-4 col-md-12">
+    <div *ngIf="isPedidos(pedidos$ | async)" id="rendimentos" class="box-dash">
+      <h2>Rendimentos</h2>
+      <p><small>Mensal</small>R$.:<strong>{{mensal | currency:' ':'symbol'}}</strong></p>
+      <p><small>Anual</small>R$.:<strong>{{anual | currency:' ':'symbol'}}</strong></p>
+      <p><small>Meta minima</small>R$.:<strong>{{meta | currency:' ':'symbol'}}</strong></p>
+    </div>
+  </div>
+</section>

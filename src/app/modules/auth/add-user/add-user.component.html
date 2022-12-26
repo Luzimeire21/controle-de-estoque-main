@@ -1,0 +1,20 @@
+<section id="add-user" class="section-auth">
+  <h2>Cadastrar Conta</h2>
+  <form>
+    <label>
+      <p>Nome</p>
+      <input name="nomeControle" [(ngModel)]="nome" type="text" required>
+    </label>
+    <label>
+      <p>E-mail</p>
+      <input name="emailControle" [(ngModel)]="email" type="email" required>
+    </label>
+    <label>
+      <p>Senha</p>
+      <input name="passwordControl" [(ngModel)]="senha" type="password" required minlength="6" maxlength="30">
+    </label>
+    <button (click)="criar()">Cadastrar</button>
+  </form>
+  <span class="hr"></span>
+  <a routerLink="/auth">Eu já tenho uma conta</a>
+</section>

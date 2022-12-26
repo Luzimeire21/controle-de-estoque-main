@@ -1,0 +1,36 @@
+<section id="interface" [ngClass]="{'hide-menu': hideMenu}">
+  <nav>
+    <h1><img src="/assets/img/logo.png" alt="Controle de Estoque" /></h1>
+    <span id="avatar">
+      <img src="/assets/img/avatar.jpg" alt="Avatar" />
+      <p id="name-user">{{(user|async)?.displayName}}</p>
+      <p id="name-email">{{(user|async)?.email}}</p>
+    </span>
+    <ul>
+      <li>
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <i class="fal fa-tachometer-alt-fast"></i> Painel de Controle
+        </a>
+      </li>
+      <li>
+        <a routerLink="/clientes" routerLinkActive="active">
+          <i class="fal fa-users"></i> Meus Clientes 
+        </a>
+      </li>
+      <li><a routerLink="/produtos" routerLinkActive="active"><i class="fal fa-box"></i> Todos os Produtos</a></li>
+      <li><a routerLink="/pedidos" routerLinkActive="active"><i class="fal fa-cash-register"></i> Pedidos de Vendas</a></li>
+    </ul>
+  </nav>
+  <div>
+    <header>
+      <i class="fas fa-bars" (click)="toggleMenu()"></i>
+      <button (click)="logout()">
+        <i class="fas fa-sign-out-alt"></i>
+        Sair da Conta
+      </button>
+    </header>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</section>
